@@ -74,5 +74,7 @@ def write_to_hbase(partition):
 
 spark.sparkContext.parallelize(metrics).foreachPartition(write_to_hbase)
 
-# Step 9: Stop Spark
+# Step 9: Save to HDFS and Stop Spark
+output_path = "hdfs:///tmp/finalproject_output"
+transformed.saveAsTextFile(output_path)
 spark.stop()
